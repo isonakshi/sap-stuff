@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Module>
-    <ModulePrefs title="SAP-HCM App"
+    <ModulePrefs title="Trial App"
                 author="Accenture"
            description="Accenture-Jive SAP-HCM App">
         <Require feature="dynamic-height"/>
