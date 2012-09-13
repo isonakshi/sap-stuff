@@ -1,11 +1,35 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-</head>
-<body>
-<table>
+<!-- CSS goes in the document HEAD or added to your external stylesheet -->
+<style type="text/css">
+table.imagetable {
+	font-family: verdana,arial,sans-serif;
+	font-size:11px;
+	color:#333333;
+	border-width: 1px;
+	border-color: #999999;
+	border-collapse: collapse;
+}
+table.imagetable th {
+	background:#b5cfd2 url('cell-blue.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+table.imagetable td {
+	background:#dcddc0 url('cell-grey.jpg');
+	border-width: 1px;
+	padding: 8px;
+	border-style: solid;
+	border-color: #999999;
+}
+</style>
+
+<!-- Table goes in the document BODY -->
+<table class="imagetable">
+<tr>
+	<th colspan="2">Please Enter the First and Last name</th>
+</tr>
 <tr><td/><td>
 First Name</td>
 <td><input type="text"/>
@@ -22,10 +46,5 @@ Last Name</td>
 		            <button id="emp-search-button">Search</button>
 		        </td>
 		    </tr>
-		</table>
-	
 
-<!-- Start off scripting -->
-<script type="text/javascript" src="hcmapp.js"></script>	
-</body>
-</html>
+</table>
