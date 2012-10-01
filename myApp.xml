@@ -104,7 +104,7 @@
 
           <label for="blog_subject">Subject:</label><input id="blog_subject" /><br />
 
-          <label for="blog_content">Content:</label><textarea rows="4" cols="50" id="blog_content" /><br />
+          <label for="blog_content">Content:</label><input id="blog_content" /><br />
 
           <input type="submit" value="Post">
 
