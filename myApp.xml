@@ -113,6 +113,193 @@
       </form>
 
     ]]>
+<script type="text/javascript">
+
+       function loadUpdates() {
+
+          osapi.jive.core.updates.get({limit: 10}).execute(function(response) {
+
+            if(!response.error) {
+
+              var updates = response.data;
+
+              var recentUpdates = document.getElementById('recent_updates');
+
+              while(recentUpdates.hasChildNodes()) {
+
+                recentUpdates.removeChild(recentUpdates.lastChild);
+
+              }
+
+ 
+
+              for(i = 0; i < updates.length; i++) {
+
+                var update = updates[i];
+
+                var user = update.author;
+
+                var node = document.createElement('li');
+
+                node.innerHTML = "<strong>" +  (user ? user.name + ": " : "") + "</strong>" +
+
+                  update.content.text;
+
+                recentUpdates.appendChild(node);
+
+              };
+
+              gadgets.window.adjustHeight();
+
+            };
+
+          });
+
+        };
+
+ 
+
+        postUpdate = function() {
+
+            var html = document.getElementById('update_entry').value;
+
+            osapi.jive.core.updates.create({userId: '@viewer', update: {html: html}}).
+
+              execute(function(response) {
+
+              if(!response.error) {
+
+                var updateEntry = document.getElementById('update_entry');
+
+                updateEntry.value = '';
+
+                loadUpdates();
+
+              }
+
+            });
+
+            return false;
+
+          };
+
+        gadgets.util.registerOnLoadHandler(loadUpdates);
+
+      </script>
+
+      <style>
+
+      body {
+
+        font-family: "Lucida Grande", Helvetica, Arial, sans-serif;
+
+      }
+
+      #update_form {
+
+        margin: 5px;
+
+        background: #f6f6f6;
+
+        border: 1px solid #ccc;
+
+        padding: 3px;
+
+      }
+
+      #update_form p {
+
+        margin: 0;
+
+      }
+
+      #update_entry {
+
+        width: 95%;
+
+        border: 1px solid #ccc;
+
+        font-size: 12px;
+
+        line-height: 18px;
+
+        padding: 3px;
+
+      }
+
+ 
+
+      #updates {
+
+        margin: 5px;
+
+        padding: 3px;
+
+        overflow: auto;
+
+      }
+
+      #updates h3 {
+
+        margin: 0 0 5px 0;
+
+        border-bottom: 1px solid #ccc;
+
+        font-weight: normal;
+
+      }
+
+ 
+
+      #recent_updates {
+
+        list-style: none;
+
+        margin: 0;
+
+        padding: 0;
+
+      }
+
+      #recent_updates li {
+
+        border-bottom: 1px solid #ccc;
+
+        font-size: 11px;
+
+        padding: 6px 0;
+
+      }
+
+      </style>
+
+      <!-- Form to create an update -->
+
+      <form id="update_form" onsubmit="return postUpdate();">
+
+        <p>
+
+          <label for="update_entry">What's going on?</label><br />
+
+          <input id="update_entry" />
+
+          <input type="submit" value="Go">
+
+        </p>
+
+      </form>
+
+      <!-- Display recent updates -->
+
+      <div id="updates">
+
+        <h3>Most Recent Updates</h3>
+
+        <ul id="recent_updates"></ul>
+
+      </div>
+
+    ]]>
 
   </Content>
 
